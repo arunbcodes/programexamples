@@ -1,0 +1,42 @@
+group 'com.example.program'
+version '1.0-SNAPSHOT'
+
+/*
+The global level 'dependencies' and 'repositories' sections list dependencies that required
+for building your source and running your source etc.
+The 'buildscript' is for the build.gradle file itself.
+So, this would contain dependencies for say creating RPMs, Dockerfile,
+and any other dependencies for running the tasks in all the dependent build.gradle
+ */
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.1.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'gs-spring-boot'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    testCompile("junit:junit")
+}
